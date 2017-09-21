@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taotao.manager.dao.ItemDao">
+
+	<resultMap id="TbItemMap" type="com.taotao.manager.pojo.Item">
+			<result property="id" jdbcType="BIGINT" column="id" />
+			<result property="title" jdbcType="VARCHAR" column="title" />
+			<result property="sellPoint" jdbcType="VARCHAR" column="sell_point" />
+			<result property="price" jdbcType="BIGINT" column="price" />
+			<result property="num" jdbcType="DOUBLE" column="num" />
+			<result property="barcode" jdbcType="VARCHAR" column="barcode" />
+			<result property="image" jdbcType="VARCHAR" column="image" />
+			<result property="cid" jdbcType="BIGINT" column="cid" />
+			<result property="status" jdbcType="INTEGER" column="status" />
+			<result property="created" jdbcType="TIMESTAMP" column="created" />
+			<result property="updated" jdbcType="TIMESTAMP" column="updated" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,
+		title,
+		sell_point,
+		price,
+		num,
+		barcode,
+		image,
+		cid,
+		status,
+		created,
+		updated
+	</sql>
+
+	<sql id="Base_Colum_Where">
+		<where>
+			<if test="id != null">
+				and id = #{id}
+			</if>
+			<if test="title != null">
+                and title = #{title}
+			</if>
+			<if test="sell_point != null">
+                and sell_point = #{sellPoint}
+			</if>
+			<if test="price != null">
+                and price = #{price}
+			</if>
+			<if test="num != null">
+                and num = #{num}
+			</if>
+			<if test="barcode != null">
+                and barcode = #{barcode}
+			</if>
+			<if test="image != null">
+                and image = #{image}
+			</if>
+			<if test="cid != null">
+                and cid = #{cid}
+			</if>
+			<if test="status != null">
+                and status = #{status}
+			</if>
+			<if test="created != null">
+                and created = #{created}
+			</if>
+			<if test="updated != null">
+                and updated = #{updated}
+			</if>
+		</where>
+	</sql>
+
+	<select id="findTbItemById" parameterType="java.lang.Long" resultMap="TbItemMap">
+		select
+		<include refid="Base_Column_List" />
+		from tb_item
+		where 
+			id = #{id}
+	</select>
+
+
+	<insert id="insertTbItem" parameterType="com.taotao.manager.pojo.Item">
+		insert into tb_item 
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="title != null">
+				title,
+			</if>
+			<if test="sell_point != null">
+				sell_point,
+			</if>
+			<if test="price != null">
+				price,
+			</if>
+			<if test="num != null">
+				num,
+			</if>
+			<if test="barcode != null">
+				barcode,
+			</if>
+			<if test="image != null">
+				image,
+			</if>
+			<if test="cid != null">
+				cid,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="created != null">
+				created,
+			</if>
+			<if test="updated != null">
+				updated,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="title != null">
+				#{title},
+			</if>
+			<if test="sell_point != null">
+				#{sellPoint},
+			</if>
+			<if test="price != null">
+				#{price},
+			</if>
+			<if test="num != null">
+				#{num},
+			</if>
+			<if test="barcode != null">
+				#{barcode},
+			</if>
+			<if test="image != null">
+				#{image},
+			</if>
+			<if test="cid != null">
+				#{cid},
+			</if>
+			<if test="status != null">
+				#{status},
+			</if>
+			<if test="created != null">
+				#{created},
+			</if>
+			<if test="updated != null">
+				#{updated},
+			</if>
+		</trim>
+	</insert>
+	
+	<insert id="saveTbItem" parameterType="com.taotao.manager.pojo.Item">
+		insert into tb_item (
+		<include refid="Base_Column_List" />
+		) values (
+		#{id},
+		#{title},
+		#{sellPoint},
+		#{price},
+		#{num},
+		#{barcode},
+		#{image},
+		#{cid},
+		#{status},
+		#{created},
+		#{updated},
+		)
+	</insert>
+
+	<update id="updateTbItem" parameterType="com.taotao.manager.pojo.Item">
+		update
+		tb_item
+		<set>
+			<if test="id != null">
+				id = #{id},
+			</if>
+			<if test="title != null">
+				title = #{title},
+			</if>
+			<if test="sellPoint != null">
+				sell_point = #{sellPoint},
+			</if>
+			<if test="price != null">
+				price = #{price},
+			</if>
+			<if test="num != null">
+				num = #{num},
+			</if>
+			<if test="barcode != null">
+				barcode = #{barcode},
+			</if>
+			<if test="image != null">
+				image = #{image},
+			</if>
+			<if test="cid != null">
+				cid = #{cid},
+			</if>
+			<if test="status != null">
+				status = #{status},
+			</if>
+			<if test="created != null">
+				created = #{created},
+			</if>
+			<if test="updated != null">
+				updated = #{updated},
+			</if>
+		</set>
+		where 
+		id = #{id}
+	</update>
+</mapper>
+
