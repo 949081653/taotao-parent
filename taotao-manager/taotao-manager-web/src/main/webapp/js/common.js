@@ -74,6 +74,7 @@ var TT = TAOTAO = {
     		// 回显图片
         	if(data && data.pics){
         		var imgs = data.pics.split(",");
+				console.log(imgs)
         		for(var i in imgs){
         			if($.trim(imgs[i]).length > 0){
         				_ele.siblings(".pics").find("ul").append("<li><a href='"+imgs[i]+"' target='_blank'><img src='"+imgs[i]+"' width='80' height='50' /></a></li>");
@@ -90,6 +91,7 @@ var TT = TAOTAO = {
 						clickFn : function(urlList) {
 							var imgArray = [];
 							KindEditor.each(urlList, function(i, data) {
+								console.log(data.url);
 								imgArray.push(data.url);
 								form.find(".pics ul").append("<li><a href='"+data.url+"' target='_blank'><img src='"+data.url+"' width='80' height='50' /></a></li>");
 							});
